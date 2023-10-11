@@ -11,7 +11,7 @@ public class TickTac {
             }
         }
         char Player='X';
-        Boolean isGameOver=false;
+        boolean isGameOver=false;
         while(!isGameOver){
             printBoard(Board);
             System.out.println();
@@ -33,11 +33,11 @@ public class TickTac {
 
                 if (Board[row][col] == ' ') {
                     Board[row][col] = Player;
-                    isGameOver = havewon(Board, Player) || isBoardEmpty(Board);
+                    isGameOver = HaveWon(Board, Player) || isBoardEmpty(Board);
                     if (isGameOver) {
                         printBoard(Board);
                         System.out.println();
-                        if(havewon(Board,Player)) {
+                        if(HaveWon(Board,Player)) {
 
                             System.out.println("Player " + Player + " has won the game.");
                         }
@@ -58,9 +58,9 @@ public class TickTac {
         }
     }
 
-    private static Boolean havewon(char[][] board, char player) {
-        for(int row=0;row<board.length;row++){
-            if(board[row][0]==player && board[row][1]==player && board[row][2]==player){
+    private static Boolean HaveWon(char[][] board, char player) {
+        for (char[] chars : board) {
+            if (chars[0] == player && chars[1] == player && chars[2] == player) {
                 return true;
             }
         }
@@ -72,10 +72,7 @@ public class TickTac {
         if(board[0][0]==player && board[1][1]==player && board[2][2]==player){
             return true;
         }
-        if(board[0][2]==player && board[1][1]==player && board[2][0]==player){
-            return true;
-        }
-        return false;
+        return board[0][2] == player && board[1][1] == player && board[2][0] == player;
     }
 
     private static void printBoard(char[][] board) {
@@ -90,9 +87,9 @@ public class TickTac {
     }
 
     public static Boolean isBoardEmpty(char [][] board){
-        for(int i=0;i<board.length;i++){
-            for(int j=0;j<board[0].length;j++){
-                if(board[i][j]==' '){
+        for (char[] chars : board) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (chars[j] == ' ') {
                     return false;
                 }
             }
